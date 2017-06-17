@@ -108,8 +108,7 @@ describe('DELETE /todos/:id', () => {
     var hexId = todos[1]._id.toHexString();
 
     request(app)
-      //.delete(`/todos/${hexId}`)
-      .delete(`/todos/12345`)
+      .delete(`/todos/${hexId}`)
       .expect(200)
       .expect((res) => {
         expect(res.body.todo._id).toBe(hexId);
