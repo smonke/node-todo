@@ -242,7 +242,7 @@ describe ('POST /users', () => {
       .post('/users')
       .send({email, password})
       .expect((res) => {
-        expect(res.body.errmsg).toBe('E11000 duplicate key error collection: TodoAppTest.users index: email_1 dup key: { : \"sonja@example.de\" }');
+        expect(res.body.errmsg).toInclude('E11000 duplicate key error collection: TodoAppTest.users index: email_1 dup key: { : \"sonja@example.de\" }');
       })
       .end(done);
   });
@@ -306,9 +306,6 @@ describe ('DELETE /users/me/token', () => {
       .delete('/users/me/token')
       .set('x-auth', users[0].tokens[0].token)
       .expect(200)
-      // .expect((res) => {
-      //   expect(res.headers['x-auth']).toNotExist();
-      // })
       .end((err, res) => {
         if (err) {
           return done(err);
