@@ -241,9 +241,7 @@ describe ('POST /users', () => {
     request(app)
       .post('/users')
       .send({email, password})
-      .expect((res) => {
-        expect(res.body.errmsg).toInclude('E11000 duplicate key error collection: TodoAppTest.users index: email_1 dup key: { : \"sonja@example.de\" }');
-      })
+      .expect(400)
       .end(done);
   });
 });
